@@ -65,7 +65,7 @@
                                   "vmlinuz initrd=initrd.img root=/dev/ram0 loglevel=3 ks={{user `var_http_server`}}/photon-kickstart.json photon.media=cdrom",
                                   "<enter>"
                                 ],
-      "shutdown_command":       "shutdown -h now"
+      "shutdown_command":       "sudo shutdown -h now"
     }
   ]
 } 
