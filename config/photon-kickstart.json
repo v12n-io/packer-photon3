@@ -16,7 +16,7 @@
     "postinstall": [
         "#!/bin/sh",
         "useradd -m -G sudo REPLACEWITHLINUXUSERNAME",
-        "echo \"root:REPLACEWITHLINUXPASSWORD\" | chpasswd",
+        "echo \"root:REPLACEWITHLINUXUSERPASS\" | chpasswd",
         "sed -i 's/MaxAuthTries.*/MaxAuthTries 10/g' /etc/ssh/sshd_config",
         "echo \"REPLACEWITHLINUXUSERNAME  ALL=(ALL)  NOPASSWD:SETENV: ALL\" >> /etc/sudoers.d/REPLACEWITHLINUXUSERNAME",
         "sed -i 's/^.*requiretty/#Defaults requiretty/' /etc/sudoers",
