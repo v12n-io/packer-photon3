@@ -1,0 +1,67 @@
+{
+  "variables": {
+      "var_vsphere_vcenter":      "{{env `VSPHEREVCENTER`}}",
+      "var_vsphere_username":     "{{env `VSPHEREUSER`}}",
+      "var_vsphere_password":     "{{env `VSPHEREPASS`}}",
+      "var_vsphere_datacenter":   "{{env `VSPHEREDATACENTER`}}",
+      "var_vsphere_cluster":      "{{env `VSPHERECLUSTER`}}",
+      "var_vsphere_datastore":    "{{env `VSPHEREDATASTORE`}}",
+      "var_vsphere_network":      "{{env `VSPHERENETWORK`}}",
+      "var_vsphere_folder":       "Templates/CentOS",
+      "var_vsphere_iso_ds":       "{{env `VSPHEREISODS`}}",
+      "var_iso_path":             "os/centos/8",
+      "var_iso_file":             "CentOS-8.2.2004-x86_64-dvd1.iso",
+      "var_guest_username":       "{{env `LINUXUSER`}}",
+      "var_guest_password":       "{{env `LINUXPASS`}}",
+      "var_build_version":        "{{env `BUILDVERSION`}}",
+      "var_build_repo":           "{{env `BUILDREPO`}}",
+      "var_build_branch":         "{{env `BUILDBRANCH`}}",
+      "var_http_server":          "{{env `HTTPSERVER`}}",
+      "var_content_library":      ""
+  },
+
+  "builders": [
+    {
+      "type":                   "vsphere-iso",
+      "name":                   "photon3",
+
+      "vcenter_server":         "{{user `var_vsphere_vcenter`}}",
+      "username":               "{{user `var_vsphere_username`}}",
+      "password":               "{{user `var_vsphere_password`}}",
+      "insecure_connection":    true,
+
+      "datacenter":             "{{user `var_vsphere_datacenter`}}",
+      "cluster":                "{{user `var_vsphere_cluster`}}",
+      "folder":                 "{{user `var_vsphere_folder`}}",
+      "datastore":              "{{user `var_vsphere_datastore`}}",
+      "convert_to_template":    true,
+
+      "vm_name":                "photon3-{{user `var_build_version`}}",
+      "guest_os_type":          "vmwarePhoton64Guest",
+      "CPUs":                   1,
+      "RAM":                    1024,
+      "disk_controller_type":   "pvscsi",
+      "storage": [
+        {
+          "disk_size":      16384,
+          "disk_thin_provisioned": true
+        }
+      ],
+      "network_adapters": [
+        {
+          "network":        "{{user `var_vsphere_network`}}",
+          "network_card":   "vmxnet3"
+        }
+      ],
+      "notes":                  "VER: {{user `var_build_version`}}\nSRC: {{user `var_build_repo`}} ({{user `var_build_branch`}})\nOS: CentOS8\nISO: {{user `var_iso_file`}}",
+
+      "communicator":           "ssh",
+      "ssh_username":           "{{user `var_guest_username`}}",
+      "ssh_password":           "{{user `var_guest_password`}}",
+
+      "iso_paths":              ["{{user `var_vsphere_iso_ds`}} {{user `var_iso_path`}}/{{user `var_iso_file`}}"],
+      "boot_command":           ["<wait><tab><wait>", " root=/dev/ram0 loglevel=3 ks={{user `var_http_server`}}/photon-kickstart.json", "<enter>"],
+      "shutdown_command":       "shutdown -h now"
+    }
+  ]
+} 
