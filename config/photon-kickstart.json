@@ -17,6 +17,10 @@
         "linux",
         "initramfs"
         ],
+    "additional_packages": [
+        "sudo",
+        "vim"
+    ]
     "postinstall": [
         "#!/bin/sh",
         "useradd -m -G sudo REPLACEWITHLINUXUSERNAME",
