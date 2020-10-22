@@ -12,10 +12,11 @@
                         {"mountpoint": "/root", "size": 128, "filesystem": "ext4"},
                         {"size": 128, "filesystem": "swap"}
                     ],
-    "ostree": {
-        "default_repo": true
-    },
-    "packagelist_file": "packages_minimal.json",
+    "packages": [
+        "minimal",
+        "linux",
+        "initramfs"
+        ],
     "postinstall": [
         "#!/bin/sh",
         "useradd -m -G sudo REPLACEWITHLINUXUSERNAME",
