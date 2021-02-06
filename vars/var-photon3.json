@@ -1,0 +1,20 @@
+{
+    "vcenter_folder":       "Templates/Photon3",
+    "iso_path":             "os/photon/3",
+    "iso_file":             "photon-3.0-a383732.iso",
+    "http_server":          "{{env `HTTPSERVER`}}",
+    "guest_username":       "{{env `LINUXUSER`}}",
+    "guest_password":       "{{env `LINUXPASS`}}",
+    "guest_type":           "vmwarePhoton64Guest",
+    "build_version":        "{{env `BUILDVERSION`}}",
+    "build_repo":           "{{env `BUILDREPO`}}",
+    "build_branch":         "{{env `BUILDBRANCH`}}",
+    "cpu_count":            "1",
+    "mem_count":            "1024",
+    "disk_size":            "16384",
+    "disk_thin":            "true",
+    "disk_controller":      "pvscsi",
+    "network_card":         "vmxnet3",
+    "config_file":          "photon3.cfg",
+    "script_files":         "scripts/00-update.sh,scripts/10-configure-sshd.sh,scripts/95-motd.sh"
+}
