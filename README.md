@@ -13,7 +13,7 @@ This repository contains a Packer build for Photon 3 Linux on a vSphere platform
 ├── vars
 │   ├── var-common.json
 │   └── var-photon3.json
-└── centos8.json
+└── photon3.json
 ```
 
 The Packer template itself is in the root of the repository and is named "photon3.json". This file is used by Packer to build / provision the template in to vSphere.
