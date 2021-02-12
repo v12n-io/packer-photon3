@@ -16,5 +16,5 @@
     "disk_controller":      "pvscsi",
     "network_card":         "vmxnet3",
     "config_file":          "photon3.cfg",
-    "script_files":         "scripts/00-update.sh,scripts/10-configure-sshd.sh,scripts/95-motd.sh"
+    "script_files":         "scripts/00-update.sh,scripts/10-configure-sshd.sh,scripts/95-motd.sh,99-cleanup.sh"
 }
