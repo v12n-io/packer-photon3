@@ -1,5 +1,5 @@
 # packer-photon3
-This repository contains a Packer build for Photon 3 Linux on a vSphere platform.
+This repository contains a Packer build for Photon 3 Linux on a vSphere platform. It is not being maintained any further though. Please visit my current repository for Packer / vSphere at https://github.com/v12n-io/packer.
 ## Structure
 
 ```
